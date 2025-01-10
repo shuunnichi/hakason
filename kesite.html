@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗記用プログラム</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+
+<body>
+    <div id="input-area">
+        <textarea id="inputText" placeholder="文章を入力してください"></textarea>
+        <button onclick="processText()">表示</button>
+    </div>
+    <div class="button-container">
+        <button onclick="revealAll()">すべて見えるようにする</button>
+        <button onclick="obscureAll()">すべて見えなくする</button>
+    </div>
+    <div id="content"></div>
+    <script>
+        function obscureText(text) {
+            // '#' の数が奇数個の場合のエラーチェック
+            let count = (text.match(/#/g) || []).length;
+            if (count % 2 !== 0) {
+                alert("エラー: '#' の数が奇数個です。");
+                return "";
+            }
+    
+            // '##' のように '#' が隣り合っている場合のエラーチェック
+            if (text.includes("##")) {
+                alert("エラー: '##' のように '#' が隣り合っています。");
+                return "";
+            }
+    
+            // 全角 '#' が使用されている場合のエラーチェック
+            if (text.includes("＃")) {
+                alert("注意: 全角の'＃'が使用されています。半角の'#'を使用してください。");
+            //    return "";
+            }
+    
+            // 隠蔽処理
+           return text.replace(/#(.*?)#/g, '<span class="obscured" onclick="toggleText(this)">$1</span>');
+        }
+    
+    
+        function toggleText(element) {
+            element.classList.toggle('obscured');
+            element.classList.toggle('revealed');
+        }
+    
+        function processText() {
+            let inputText = document.getElementById('inputText').value;
+            document.getElementById('content').innerHTML = obscureText(inputText);
+        }
+    
+        function revealAll() {
+            const elements = document.querySelectorAll('.obscured');
+            elements.forEach(element => {
+                element.classList.remove('obscured');
+                element.classList.add('revealed');
+            });
+        }
+    
+        function obscureAll() {
+            const elements = document.querySelectorAll('.revealed');
+            elements.forEach(element => {
+                element.classList.remove('revealed');
+                element.classList.add('obscured');
+            });
+        }
+    </script>
+</body>
+
+</html>

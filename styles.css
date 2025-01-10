@@ -1,0 +1,73 @@
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+.button-container {
+    margin-bottom: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 140px);
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
+    word-wrap: break-word;
+    line-height: 1.6;
+    color: inherit;
+    white-space: pre-wrap;
+}
+
+.obscured {
+    display: inline-block;
+    background-color: #ff0000;
+    border-radius: 5px;
+    color: #ff0000;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 2px 4px;
+    text-shadow: none;
+    transition: background-color 0.3s ease;
+    user-select: none; /* テキストの選択を無効にする */
+}
+
+.revealed {
+    display: inline-block;
+    background-color: transparent;
+    color: inherit;
+    cursor: default;
+    vertical-align: middle;
+    padding: 2px 4px;
+    text-shadow: none;
+    transition: background-color 0.3s ease;
+}
+
+#input-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+#input-area textarea {
+    width: 80%;
+    min-height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #000;
+}
+
+#input-area button {
+    color: black;
+}
